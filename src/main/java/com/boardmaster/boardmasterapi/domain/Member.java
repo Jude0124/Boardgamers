@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,13 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
+    @Column(nullable = false)
     private String userId;
-    @NotNull
+    @Column(nullable = false)
     private String email;
     private String password;
     private String nickname;
+    @Column(nullable = false)
     private String phone;
 //    @OneToMany(mappedBy = "member")
 //    private List<Article> articles = new ArrayList<>();
