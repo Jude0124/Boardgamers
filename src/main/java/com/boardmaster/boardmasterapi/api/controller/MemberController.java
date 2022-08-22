@@ -1,7 +1,9 @@
 package com.boardmaster.boardmasterapi.api.controller;
 
+import com.boardmaster.boardmasterapi.api.form.member.FindMemberIdForm;
 import com.boardmaster.boardmasterapi.api.form.member.FindMemberPasswordForm;
 import com.boardmaster.boardmasterapi.domain.service.MemberService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.sdk.message.model.Message;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 
 @Slf4j
 @RestController
@@ -21,14 +24,13 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/find/id")
-    public String findMemberId(@RequestParam @Valid String email,
-                               BindingResult bindingResult) {
+    public String findMemberId(@RequestBody @Valid FindMemberIdForm form, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
             bindingResult.reject("NotEmailFormat", "이메일 형식이 아닙니다.");
         }
 
-        String userId = memberService.findUserId(email);
+        String userId = memberService.findUserId(form.getEmail());
 
         if(userId == null) {
             bindingResult.reject("findIdFail", "해당 이메일이 없습니다.");

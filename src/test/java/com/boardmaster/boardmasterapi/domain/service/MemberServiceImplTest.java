@@ -22,7 +22,7 @@ class MemberServiceImplTest {
     @DisplayName("아이디 찾기")
     @Transactional
     void 아이디찾기() {
-        String userId = memberService.findUserId("dlwlrma@kakao.com");
-        Assertions.assertThat(userId).isEqualTo("dlwlrma");
+        String userId = memberService.findUserId("junghui@kakao.com");
+        Assertions.assertThat(userId).isEqualTo("junghui");
     }
 }
