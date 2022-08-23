@@ -14,6 +14,10 @@ public class ApiConfig {
 
     private DefaultMessageService messageService;
 
+    /**
+     * <a href="https://docs.coolsms.co.kr/development-kits/java">message api 참고</a>
+     * <p>하루 50건 무료</p>
+     */
     @Bean
     public DefaultMessageService messageService() {
         this.messageService = NurigoApp.INSTANCE.initialize(API_KEY, SECRET_API_KEY, DOMAIN);
