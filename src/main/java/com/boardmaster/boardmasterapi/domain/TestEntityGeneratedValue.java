@@ -3,14 +3,13 @@ package com.boardmaster.boardmasterapi.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Setter @Getter
-public class TestEntity {
-
+public class TestEntityGeneratedValue {
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
     private String name;
 }
